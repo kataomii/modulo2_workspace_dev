@@ -19,7 +19,6 @@ class Bird(Sprite):
             obstacles.pop()
 
     def draw(self, screen):
-        self.animation()
         screen.blit(self.image[self.index], (self.rect))
 
     def animation(self):

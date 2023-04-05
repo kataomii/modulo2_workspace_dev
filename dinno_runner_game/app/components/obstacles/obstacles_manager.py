@@ -27,8 +27,6 @@ class ObstacleManager:
             if dinosaur.rect.colliderect(obstacle.rect):
                 self.contador_2 += 1
                 
-
-
     def draw(self, screen):
         self.text.draw_text(f"obstaculos creados {self.contador}",
                             BLACK,
