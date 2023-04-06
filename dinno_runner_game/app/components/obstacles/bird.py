@@ -9,7 +9,7 @@ class Bird(Sprite):
         self.image = BIRD
         self.rect = self.image[self.index].get_rect()
         self.rect.x = SCREEN_WIDTH
-        self.rect.y = 300
+        self.rect.y = 250 if random.randint(0, 1) else 300
         self.count = 0
 
     def update(self, obstacles):

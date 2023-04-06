@@ -66,6 +66,7 @@ SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
+BG_MENU = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track_menu.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
@@ -85,4 +86,14 @@ WHITE = (255,255,255)
 BLACK = (0,0,0)
 RED = (255,0,0)
 BLUE = (0,0,255)
-GREEN = (0,255,0) 
+GREEN = (0,255,0)
+YELLOW = (255,255,0)
+
+CUADRO = pygame.image.load(os.path.join(IMG_DIR, 'Other/cuadro.png'))
+CUADRO_ESCALE = pygame.transform.scale(CUADRO,(300,250))
+
+MARCO = pygame.image.load(os.path.join(IMG_DIR, 'Other/marco_score.png'))
+MARCO_ESCALE = pygame.transform.scale(MARCO,(200,150))
+
+FONDO = pygame.image.load(os.path.join(IMG_DIR, 'Other/fondo.jpg'))
+FONDO_ESCALE = pygame.transform.scale(FONDO,(SCREEN_WIDTH,SCREEN_HEIGHT+350))

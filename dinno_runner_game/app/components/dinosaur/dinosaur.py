@@ -13,7 +13,7 @@ class Dinosaur(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = POS_X
         self.rect.y = POS_Y
-        self.running = False
+        self.running = True
         self.jumping = False
         self.ducking = False
         self.count = 0
@@ -22,13 +22,14 @@ class Dinosaur(Sprite):
     def draw(self, screen):
         screen.blit(self.image, (self.rect))
 
-    def update(self):
+    def update(self,key):
         if self.running:
             self.run()
         elif self.ducking:
             self.duck()
         elif self.jumping:
             self.jump()
+        self.control(key)
         
     def run(self):
         self.image = RUNNING[self.index]
@@ -40,7 +41,7 @@ class Dinosaur(Sprite):
         self.image = JUMPING
         if self.jumping:                    
             self.rect.y -= self.jump_vel * 4
-            self.jump_vel -= 1
+            self.jump_vel -= 0.9
         if self.jump_vel < -JUMP_VEL:
             self.rect.y = POS_Y
             self.jumping = False
@@ -61,28 +62,21 @@ class Dinosaur(Sprite):
         if self.count == 10:
             self.count = 0 
         
-    def control(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN and not self.jumping:
-                self.running = False
-                self.ducking = True
-                self.jumping = False
-            elif event.key == pygame.K_UP and not self.jumping:
-                self.running = False
-                self.ducking = False
-                self.jumping = True
-            elif event.key == pygame.K_r and not self.jumping:
-                self.running = True
-                self.ducking = False
-                self.djumping = False
+    def control(self, key):
+        if key[pygame.K_DOWN] and not self.jumping:
+            self.running = False
+            self.ducking = True
+            self.jumping = False
+        elif key[pygame.K_UP] and not self.jumping:
+            pygame.mixer.music.load("dinno_runner_game/app/assets/Music/jump_song.wav")
+            pygame.mixer.music.set_volume(0.1)
+            pygame.mixer.music.play()
+            self.running = False
+            self.ducking = False
+            self.jumping = True
+        elif not self.jumping:
+            self.running = True
+            self.ducking = False
+            self.djumping = False
 
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_DOWN and not self.jumping:
-                self.running = False
-                self.ducking = False
-                self.jumping = False
-            elif event.key == pygame.K_r:
-                self.running = False
-                self.ducking = False
-                self.djumping = False
         
